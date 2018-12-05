@@ -7,10 +7,15 @@ import pickle
 from features import extract_features # make sure features.py is in the same directory
 import activity_recognition
 from util import reorient, reset_vars
+from scipy.ndimage.interpolation import shift
 
 # TODO: Replace the string with your user ID
 user_id = "fifa"
 chosen_activity = 'sitting'
+x_values = np.zeros(250)
+y_values = np.zeros(250)
+z_values = np.zeros(250)
+t_values = np.zeros(250)
 '''
 ***   Final Project code goes here!  ***
 *** Using sitting as a default exercise ***
@@ -19,7 +24,7 @@ chosen_activity = 'sitting'
 def correct_motion(activity):
     if activity == chosen_activity:
         print("You are " + activity)
-        data = analyse_data()
+        data = analyse_data(activity)
         provide_feedback(data, activity)
 
 '''
@@ -27,10 +32,10 @@ Used to find most wrong dimension that we can then use in the provide feedback m
 provide feedback of the correct nature
 '''
 def analyse_data(activity):
-    global x
-    global y
-    global z
-    global t
+    global x_values
+    global y_values
+    global z_values
+    global t_values
 
     if activity == chosen_activity:
         axis = 'none'
@@ -141,6 +146,16 @@ try:
                     x = data['data']['x']
                     y = data['data']['y']
                     z = data['data']['z']
+
+                    x_values = shift(x_values, cval=1)
+                    x_values[0]= x
+                    y_values = shift(y_values, cval=1)
+                    y_values[0] = y
+                    z_values = shift(y_values, cval=1)
+                    z_values[0] = z
+                    t_values = shift(t_values, cval=1)
+                    t_values[0] = t
+
 
                     sensor_data.append(reorient(x, y, z))
                     index += 1
