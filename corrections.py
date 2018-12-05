@@ -10,7 +10,7 @@ from util import reorient, reset_vars
 from scipy.ndimage.interpolation import shift
 
 # TODO: Replace the string with your user ID
-user_id = "fifa"
+user_id = "fifa3"
 chosen_activity = 'sitting'
 x_values = np.zeros(250)
 y_values = np.zeros(250)
@@ -22,10 +22,10 @@ t_values = np.zeros(250)
 '''
 
 def correct_motion(activity):
-    if activity == chosen_activity:
-        print("You are " + activity)
-        data = analyse_data(activity)
-        provide_feedback(data, activity)
+    # if activity == chosen_activity:
+    print("You are " + activity)
+        # data = analyse_data(activity)
+        # provide_feedback(data, activity)
 
 '''
 Used to find most wrong dimension that we can then use in the provide feedback method to
@@ -147,14 +147,14 @@ try:
                     y = data['data']['y']
                     z = data['data']['z']
 
-                    x_values = shift(x_values, cval=1)
-                    x_values[0]= x
-                    y_values = shift(y_values, cval=1)
-                    y_values[0] = y
-                    z_values = shift(y_values, cval=1)
-                    z_values[0] = z
-                    t_values = shift(t_values, cval=1)
-                    t_values[0] = t
+                    # x_values = shift(x_values, cval=1)
+                    # x_values[0]= x
+                    # y_values = shift(y_values, cval=1)
+                    # y_values[0] = y
+                    # z_values = shift(y_values, cval=1)
+                    # z_values[0] = z
+                    # t_values = shift(t_values, cval=1)
+                    # t_values[0] = t
 
 
                     sensor_data.append(reorient(x, y, z))
