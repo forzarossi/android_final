@@ -20,12 +20,16 @@ t_values = np.zeros(250)
 ***   Final Project code goes here!  ***
 *** Using sitting as a default exercise ***
 '''
+count = 0
 
 def correct_motion(activity):
+    global count
     # if activity == chosen_activity:
-    print("You are " + activity)
+    if count % 4 == 0:
+        print("You are " + activity)
         # data = analyse_data(activity)
         # provide_feedback(data, activity)
+    count+= 1
 
 '''
 Used to find most wrong dimension that we can then use in the provide feedback method to
