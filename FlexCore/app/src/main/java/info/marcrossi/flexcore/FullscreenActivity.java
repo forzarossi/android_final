@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Switch; 
+import android.widget.Switch;
 import android.widget.CompoundButton;
-
+import android.widget.TextView;
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
@@ -84,7 +84,10 @@ public class FullscreenActivity extends AppCompatActivity {
             return false;
         }
     };
-
+    private TextView textView;
+    private Switch accelSwitch;
+    private TextView results;
+    private TextView fullscreen;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,6 +111,26 @@ public class FullscreenActivity extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        textView = (TextView)findViewById(R.id.text);
+        accelSwitch = (Switch) findViewById(R.id.switch6);
+        results = (TextView) findViewById(R.id.results);
+        fullscreen = (TextView) findViewById(R.id.fullscreen_content);
+
+        accelSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(CompoundButton compoundButton, boolean enabled)
+            {
+                if(enabled){
+                    results.setVisibility(View.VISIBLE);
+                    fullscreen.setText("");
+                    textView.setText("Started");
+                }else {
+                    fullscreen.setText("Turn on Data Tracking to Begin");
+                    results.setVisibility(View.INVISIBLE);
+                    textView.setText("Stopped");
+                }
+            }
+        });
     }
 
     @Override

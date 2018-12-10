@@ -15,10 +15,43 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:keepScreenOn="true"
-        android:text="@string/dummy_content"
+        android:text="Turn on Data Tracking to Begin!"
         android:textColor="#33b5e5"
         android:textSize="50sp"
         android:textStyle="bold" />
+
+    <Switch
+        android:id="@+id/switch6"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#008577"
+        android:paddingTop="15dp"
+        android:switchPadding="30dp"
+        android:text="Track Data"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:paddingTop="10dp"
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/switch6"
+        android:text="Stopped"
+        android:paddingLeft="50dp"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+
+    <TextView
+        android:paddingTop="10dp"
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status:"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"/>
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
@@ -41,11 +74,27 @@
                 android:id="@+id/dummy_button"
                 style="?metaButtonBarButtonStyle"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/dummy_button" />
+                android:layout_height="40dp"
+                android:layout_weight="10"
+                android:background="#FFF"
+                android:text="Detect Exercise"
+                android:textStyle="bold" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/results"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/switch6"
+            android:layout_gravity="center"
+            android:text="Gathering Data..."
+            android:visibility="invisible"
+            android:textStyle="bold"
+            android:textSize="30dp"/>
+
     </FrameLayout>
+
+
 
 </FrameLayout>
