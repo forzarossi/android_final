@@ -6,6 +6,8 @@ import numpy as np
 import pickle
 from features import extract_features # make sure features.py is in the same directory
 import activity_recognition
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 from util import reorient, reset_vars
 from scipy.ndimage.interpolation import shift
 
@@ -37,6 +39,7 @@ def analyse_data(activity):
     global z_values
     global t_values
 
+
     if activity == chosen_activity:
         axis = 'none'
         print("We will now analyse your form and attempt to provide feedback")
@@ -63,6 +66,40 @@ def provide_feedback(axis, activity):
             print("We detect nothing wrong with your form keep up the good work!")
 
 
+'''
+Code for animating values
+'''
+
+fig = plt.figure()
+ax1 = fig.add_subplot(1, 2, 1)
+ax2 = fig.add_subplot(1, 2, 2)
+def animate(i):
+    global tvals, xvals, yvals, zvals, magvals, repindices
+
+    rep_marker_locs = np.nonzero(repindices)
+    rep_marker_locs = list(rep_marker_locs[0])
+
+    try:
+        ax1.clear()
+        ax2.clear()
+        ax1.plot(tvals, xvals, label="X")
+        ax1.plot(tvals, yvals, label="Y")
+        ax1.plot(tvals, zvals, label="Z")
+        ax1.set_title('Angular Motion')
+        ax1.set_xlabel('Time (seconds)')
+        ax1.set_ylabel('Angular Velocity (Degrees / second')
+        ax1.set_ylim(-40, 40)
+
+        if (len(rep_marker_locs) > 0):
+            ax2.plot(tvals, magvals, '-gD', markevery=rep_marker_locs, markersize=20)
+        else:
+            ax2.plot(tvals, magvals, '-g')
+        ax2.set_title('Real Time Magnitude')
+        ax2.set_xlabel('Time (seconds)')
+        ax2.set_ylabel('Angular Velocity (Degrees / second)')
+        ax2.set_ylim(-40, 40)
+    except KeyboardInterrupt:
+        quit()
 
 '''
 Code for connecting to phone
