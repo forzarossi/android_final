@@ -15,7 +15,7 @@ from features import extract_features # make sure features.py is in the same dir
 from util import reorient, reset_vars
 
 # TODO: list the class labels that you collected data for in the order of label_index (defined in collect-labelled-data.py)
-class_names = ["sitting", "walking", "standing", "stomping"] #...
+class_names = ["sitting", "perfectCurl", "walking", "badcurl-elbowup"] #...
 activity = "none"
 count = 0
 
