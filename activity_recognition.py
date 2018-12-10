@@ -16,7 +16,7 @@ from util import reorient, reset_vars
 
 # TODO: list the class labels that you collected data for in the order of label_index (defined in collect-labelled-data.py)
 class_names = ["sitting", "perfectCurl", "walking", "badcurl-elbowup", "half_curl", "back_elbow", "high_half", "Do not stick out your elbow", "Do not raise your elbow", "elbow_back", "You are resting", "Perfect form"] #...
-# label numbers  0              1           2              3                4           5               6           7           8           9            10            11
+# label numbers   0            1             2              3                4           5             6                    7                               8                  9                10              11
 activity = "none"
 count = 0
 
