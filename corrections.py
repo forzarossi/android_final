@@ -26,7 +26,7 @@ def correct_motion(activity):
     global count
     # if activity == chosen_activity:
     if count % 4 == 0:
-        print("You are " + activity)
+        print(activity)
         # data = analyse_data(activity)
         # provide_feedback(data, activity)
     count+= 1

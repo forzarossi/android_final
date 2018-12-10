@@ -6,13 +6,13 @@ import numpy as np
 # TODO: Replace the string with your app's BadgeID
 user_id = "fifa3"
 # TODO: Set label_name to the activity you are doing
-label_name = "stomping"
+label_name = "perfect_curl"
 """
 TODO: Set label_index to the activity index, ranging from 0 to (num_of_activities-1) 
 Your classifier will return the index of the activity and you will get the label name
 from this index in activity_recognition.py
 """
-label_index = 3
+label_index = 11
 
 #################   Begin Server Connection Code  ####################
 
