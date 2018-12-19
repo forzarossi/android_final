@@ -29,6 +29,13 @@ def correct_motion(activity):
     # if activity == chosen_activity:
     if count % 4 == 0:
         print(activity)
+
+        global send_socket
+        json_msg = ''
+        json_msg = json.dumps(
+            {'user_id': user_id, 'sensor_type': 'SENSOR_SERVER_MESSAGE', 'message': 'ACTIVITY', 'data': activity}) + '\n'
+        json_msg = json_msg.encode('utf-8')
+        send_socket.send(json_msg)
         # data = analyse_data(activity)
         # provide_feedback(data, activity)
     count+= 1
@@ -154,9 +161,13 @@ msg_authenticate = "ID,{}\n"
 msg_acknowledge_id = "ACK"
 
 try:
+    send_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    send_socket.connect(("none.cs.umass.edu", 9999))
+
     print("Authenticating user for receiving data...")
     sys.stdout.flush()
     authenticate(receive_socket)
+    authenticate(send_socket)
 
     print("Successfully connected to the server! Waiting for incoming data...")
     sys.stdout.flush()
